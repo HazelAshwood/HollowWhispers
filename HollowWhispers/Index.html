@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Dumping Grounds — Ash Hollow</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="A quiet place to surrender burdens under starlit skies.">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M1FVLJ6RB8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M1FVLJ6RB8', {
+      send_page_view: true
+    });
+  </script>
+</head>
+<body>
+  <div class="veil"></div>
+
+  <div class="fireflies">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <h1 class="lantern-title">The Dumping Grounds</h1>
+
+  <div class="input-container" id="dumpUI">
+    <textarea placeholder="Let it out, you're safe now"></textarea>
+    <button type="button" class="release-button" onclick="releaseMessage()">Release</button>
+  </div>
+
+  <p class="soft-welcome" id="welcomeMessage">welcome to the quiet</p>
+
+  <script>
+    function releaseMessage() {
+      const veil = document.querySelector('.veil');
+      const lanterntitle = document.querySelector('.lantern-title');
+      const inputBox = document.getElementById('dumpUI');
+      const welcome = document.getElementById('welcomeMessage');
+
+      if (typeof gtag === "function") {
+      gtag('event', 'release_clicked', {
+        event_category: 'interaction',
+        event_label: 'release_button',
+        value: 1
+      });
+    }
+
+      lanterntitle.classList.add('fade-out');
+      inputBox.classList.add('fade-out');
+      veil.classList.add('reveal');
+
+      setTimeout(() => {
+        welcome.classList.add('show');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

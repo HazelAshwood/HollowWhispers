@@ -1,0 +1,193 @@
+@font-face {
+  font-family: 'MessyScript';
+  src: url('fonts/MessyScript.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url('Images/forest-background-paw-print.png'); /* <- Replace with your actual forest background */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'MessyScript', cursive;
+}
+
+/* VEIL for fade-in effect */
+.veil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 5;
+  transition: opacity 3s ease;
+  opacity: 0.8;
+}
+
+.veil.reveal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Flickering title */
+.lantern-title {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  color: #cfd7b0;
+  text-align: center;
+  z-index: 10;
+  animation: flicker 3.5s infinite ease-in-out;
+  text-shadow:
+    0 0 4px #cfd7b0,
+    0 0 10px rgba(207, 215, 176, 0.5),
+    0 0 16px rgba(207, 215, 176, 0.2);
+}
+
+@keyframes flicker {
+  0%, 100% {
+    text-shadow: 0 0 4px #cfd7b0, 0 0 10px rgba(207, 215, 176, 0.5), 0 0 16px rgba(207, 215, 176, 0.2);
+    opacity: 1;
+  }
+  45% {
+    text-shadow: 0 0 3px #cfd7b0, 0 0 8px rgba(207, 215, 176, 0.3), 0 0 12px rgba(207, 215, 176, 0.15);
+    opacity: 0.9;
+  }
+  55% {
+    text-shadow: 0 0 4px #cfd7b0, 0 0 10px rgba(207, 215, 176, 0.6), 0 0 15px rgba(207, 215, 176, 0.4);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.94;
+  }
+}
+
+/* Input container */
+.input-container {
+  position: absolute;
+  top: 220px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 700px;
+  z-index: 9;
+  transition: opacity 2s ease;
+}
+
+textarea {
+  width: 100%;
+  height: 300px;
+  padding: 20px;
+  font-size: 1.1rem;
+  font-family: 'MessyScript', cursive;
+  color: #cfd7b0;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(190, 220, 170, 0.2);
+  border-radius: 8px;
+  resize: none;
+  box-shadow: 0 0 8px rgba(150, 170, 120, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+textarea::placeholder {
+  color: #cfd7b0;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.release-button {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 28px;
+  background-color: rgba(207, 215, 176, 0.1);
+  border: 1px solid #cfd7b0;
+  border-radius: 8px;
+  font-family: 'MessyScript', cursive;
+  font-size: 1.5rem;
+  color: #cfd7b0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-shadow: 0 0 4px rgba(207, 215, 176, 0.2);
+}
+
+.release-button:hover {
+  background-color: rgba(207, 215, 176, 0.2);
+  box-shadow: 0 0 8px rgba(207, 215, 176, 0.2);
+  transform: scale(1.02);
+}
+
+/* Fireflies */
+.fireflies {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.fireflies span {
+  position: absolute;
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: #ffd27a;
+  border-radius: 50%;
+  box-shadow: 0 0 14px 8px rgba(255, 186, 77, 0.8);
+  opacity: 0.25;
+  animation: floatRandom 12s ease-in-out infinite, flickerSoft 4s infinite ease-in-out;
+}
+
+/* Random firefly positions */
+.fireflies span:nth-child(1)  { top: 12%; left: 8%; animation-delay: 0s; }
+.fireflies span:nth-child(2)  { top: 27%; left: 75%; animation-delay: 1.5s; }
+.fireflies span:nth-child(3)  { top: 40%; left: 22%; animation-delay: 3s; }
+.fireflies span:nth-child(4)  { top: 15%; left: 60%; animation-delay: 2s; }
+.fireflies span:nth-child(5)  { top: 90%; left: 30%; animation-delay: 0.5s; }
+/* Add more as needed */
+
+@keyframes floatRandom {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.05; }
+  25% { transform: translate(10px, -20px) scale(1.05); opacity: 0.08; }
+  50% { transform: translate(-5px, 15px) scale(0.95); opacity: 0.1; }
+  75% { transform: translate(8px, -10px) scale(1.02); opacity: 0.06; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.05; }
+}
+@keyframes flickerSoft {
+  0%, 100% { opacity: 0.25; }
+  45% { opacity: 0.18; }
+  60% { opacity: 0.3; }
+  75% { opacity: 0.22; }
+}
+/* Fade-out class */
+.fade-out {
+  opacity: 0;
+  transition: opacity 2s ease;
+  pointer-events: none;
+}
+.soft-welcome {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'MessyScript', cursive;
+  font-size: 1.4rem;
+  color: rgba(190, 200, 170, 0.4); /* soft mossy tone */
+  opacity: 0;
+  transition: opacity 3s ease;
+  z-index: 10;
+}
+
+.soft-welcome.show {
+  opacity: 1;
+}
